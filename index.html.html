@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sedute Atl. Lodigiani</title>
+</head>
+<body>
+<title>Sedute Atl. Lodigiani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F1F3F6;
+  --surface:#FFFFFF;
+  --surface-2:#E9ECF1;
+  --surface-3:#DFE4EB;
+  --ink:#10151C;
+  --ink-2:#4C5666;
+  --ink-3:#78828F;
+  --line:#DCE1E8;
+  --line-2:#C8D0DA;
+  --accent:#1C5CAB;
+  --accent-soft:#DCE9FA;
+  --chart-surface:#FCFCFB;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+  --rest:#C8D0DA;
+  --shadow:0 1px 2px rgba(16,21,28,.05), 0 10px 26px -18px rgba(16,21,28,.35);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1013;
+    --surface:#161A1F;
+    --surface-2:#1D232A;
+    --surface-3:#252C34;
+    --ink:#E9EDF2;
+    --ink-2:#9BA6B3;
+    --ink-3:#77828F;
+    --line:#262D35;
+    --line-2:#333C46;
+    --accent:#6DA7EC;
+    --accent-soft:#17283C;
+    --chart-surface:#1a1a19;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+    --rest:#333C46;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 14px 34px -20px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1013;
+  --surface:#161A1F;
+  --surface-2:#1D232A;
+  --surface-3:#252C34;
+  --ink:#E9EDF2;
+  --ink-2:#9BA6B3;
+  --ink-3:#77828F;
+  --line:#262D35;
+  --line-2:#333C46;
+  --accent:#6DA7EC;
+  --accent-soft:#17283C;
+  --chart-surface:#1a1a19;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+  --rest:#333C46;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 14px 34px -20px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.cond{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",Arial,sans-serif;font-weight:600;letter-spacing:0}
+.mono,.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+p{margin:0}
+.eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+
+.wrap{max-width:1500px;margin:0 auto;padding:0 20px 60px}
+header.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.top-in{max-width:1500px;margin:0 auto;padding:18px 20px 0;display:flex;flex-wrap:wrap;gap:6px 26px;align-items:baseline}
+h1{margin:0;font-size:clamp(23px,2.6vw,31px);line-height:1.05;font-weight:700}
+h1 .light{color:var(--ink-3);font-weight:600}
+.sub{font-size:13px;color:var(--ink-3)}
+
+/* KPI */
+.kpis{max-width:1500px;margin:0 auto;padding:14px 20px 16px;display:grid;gap:1px;background:var(--line);
+  grid-template-columns:repeat(7,minmax(0,1fr));border-radius:0}
+@media (max-width:1080px){.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis .kpi:last-child{grid-column:span 2}}
+@media (min-width:621px) and (max-width:1080px){.kpis .kpi:nth-child(7){grid-column:span 4}}
+.kpis{padding:0;margin-top:16px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.kpi{background:var(--surface);padding:11px 14px 12px}
+.kpi .v{font-family:"IBM Plex Mono",monospace;font-size:25px;font-weight:500;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi .k{font-size:11px;color:var(--ink-3);margin-top:3px;letter-spacing:.04em}
+.kpi .x{font-size:12px;color:var(--ink-3);font-family:"IBM Plex Sans",sans-serif}
+
+.grid2{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,.85fr);gap:18px;margin-top:18px;align-items:start}
+@media (max-width:1000px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:9px;box-shadow:var(--shadow)}
+.card-h{padding:13px 16px 10px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;justify-content:space-between}
+.card-h h2{margin:0;font-size:17px}
+.card-h .hint{font-size:12px;color:var(--ink-3)}
+.card-b{padding:2px 16px 16px}
+
+/* stacked day chart */
+.chartwrap{position:relative;padding-left:34px;min-width:620px}
+#chartcard .card-b{overflow-x:auto}
+.yaxis{position:absolute;left:0;top:0;bottom:24px;width:34px}
+.ytick{position:absolute;right:6px;transform:translateY(-50%);font-size:10.5px;color:var(--ink-3);font-family:"IBM Plex Mono",monospace}
+.gridline{position:absolute;left:34px;right:0;border-top:1px solid var(--line);pointer-events:none}
+.bars{display:flex;gap:3px;align-items:flex-end;height:210px;position:relative}
+.bcol{flex:1 1 0;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative;cursor:pointer}
+.bcol .seg{width:100%;margin-bottom:2px}
+.bcol .seg:first-child{border-radius:4px 4px 0 0}
+.bcol .rest{height:4px;border-radius:2px;background:var(--rest);margin-bottom:0}
+.bcol.dim{opacity:.32}
+.bcol.sel::after{content:"";position:absolute;inset:-2px -1px 0;border:1.5px solid var(--accent);border-radius:5px;pointer-events:none}
+.xaxis{display:flex;gap:3px;margin-top:6px}
+.xlab{flex:1 1 0;min-width:0;text-align:center;font-size:9.5px;color:var(--ink-3);font-family:"IBM Plex Mono",monospace}
+.xlab.we{color:var(--ink-2);font-weight:500}
+.xmonth{display:flex;gap:3px;margin-top:2px}
+.xmonth span{flex:1 1 0;min-width:0;text-align:center;font-size:9.5px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase}
+
+.legend{display:flex;flex-wrap:wrap;gap:5px 14px;padding:12px 16px 0}
+.lg{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-2);background:none;border:0;padding:2px 0;cursor:pointer}
+.lg .sw{width:11px;height:11px;border-radius:3px;flex:none}
+.lg[aria-pressed="false"]{opacity:.4}
+.lg .mn{font-family:"IBM Plex Mono",monospace;color:var(--ink-3);font-size:11.5px}
+
+/* distribution */
+.dist{display:flex;flex-direction:column;gap:9px}
+.drow{display:grid;grid-template-columns:1fr auto;gap:3px 10px;align-items:baseline}
+.dlab{font-size:12.5px;color:var(--ink-2);display:flex;align-items:center;gap:7px}
+.dlab .sw{width:9px;height:9px;border-radius:2px;flex:none}
+.dval{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink);font-variant-numeric:tabular-nums}
+.dval .pc{color:var(--ink-3);font-size:11.5px;margin-left:6px}
+.dbar{grid-column:1/-1;height:9px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.dbar i{display:block;height:100%;border-radius:3px}
+
+/* weeks */
+table.wk{width:100%;border-collapse:collapse;font-size:12.5px}
+table.wk th{text-align:right;font-weight:600;color:var(--ink-3);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:0 0 6px}
+table.wk th:first-child{text-align:left}
+table.wk td{padding:6px 0;border-top:1px solid var(--line);text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+table.wk td:first-child{text-align:left;font-family:"IBM Plex Sans",sans-serif;color:var(--ink-2)}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 16px}
+input[type=search],select{
+  font-family:inherit;font-size:13px;color:var(--ink);background:var(--surface);
+  border:1px solid var(--line-2);border-radius:7px;height:34px;padding:0 9px;
+}
+input[type=search]{min-width:210px;flex:1 1 210px;max-width:340px}
+select{cursor:pointer}
+.chipbar{display:flex;flex-wrap:wrap;gap:5px;padding:0 16px 12px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-2);background:transparent;
+  border-radius:999px;padding:4px 11px;font-size:12px;color:var(--ink-2);cursor:pointer;font-family:inherit;
+}
+.chip .sw{width:9px;height:9px;border-radius:2px}
+.chip[aria-pressed="true"]{background:var(--surface-2);color:var(--ink);border-color:var(--line-2)}
+.chip[aria-pressed="false"]{opacity:.45}
+.btn{
+  font-family:inherit;font-size:13px;color:var(--ink);background:var(--surface);cursor:pointer;
+  border:1px solid var(--line-2);border-radius:7px;height:34px;padding:0 12px;
+}
+.btn:hover{background:var(--surface-2)}
+.btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.count{margin-left:auto;font-size:12.5px;color:var(--ink-3);font-family:"IBM Plex Mono",monospace}
+
+/* table */
+.tscroll{overflow-x:auto;border-top:1px solid var(--line)}
+table.log{width:100%;border-collapse:collapse;font-size:13.5px;min-width:940px}
+table.log th{
+  position:sticky;top:0;z-index:2;background:var(--surface-2);color:var(--ink-2);
+  font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;
+  text-align:left;padding:8px 12px;border-bottom:1px solid var(--line-2);white-space:nowrap;
+}
+table.log th.sortable{cursor:pointer;user-select:none}
+table.log th.sortable:hover{color:var(--ink)}
+table.log th .ar{opacity:.45;font-size:9px}
+table.log td{padding:7px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr.day td{
+  background:var(--surface-3);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);
+  padding:9px 12px;
+}
+.dayhead{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline}
+.dayhead .dt{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:700;font-size:17px}
+.dayhead .dt .dw{color:var(--ink-3);font-weight:600;margin-right:6px;text-transform:uppercase;font-size:12px;letter-spacing:.08em}
+.dayhead .m{font-size:12px;color:var(--ink-2);font-family:"IBM Plex Mono",monospace}
+.dayhead .rest{color:var(--ink-3);font-style:normal;font-size:12.5px}
+tr.ses td{background:var(--surface-2);padding:7px 12px;border-bottom:1px solid var(--line)}
+.seshead{display:flex;flex-wrap:wrap;gap:5px 12px;align-items:center;font-size:12.5px;color:var(--ink-2)}
+.seshead b{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:14px;color:var(--ink);font-weight:600}
+.tag{border:1px solid var(--line-2);border-radius:5px;padding:1px 7px;font-size:11px;color:var(--ink-2)}
+.tag.am{border-color:var(--s8);color:var(--s8)}
+.tag.te{border-color:var(--s7);color:var(--s7)}
+tr.meta td{background:var(--surface-2);border-bottom:1px solid var(--line);padding:0 12px 8px;font-size:12.5px;color:var(--ink-2)}
+.metaline{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.metaline .lb{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);flex:none}
+.catchip{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-size:12px;color:var(--ink-2)}
+.catchip .sw{width:9px;height:9px;border-radius:2px;flex:none}
+td.min{font-family:"IBM Plex Mono",monospace;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.note,td.ex{color:var(--ink-2);font-size:12.5px}
+td.prog{font-weight:500}
+tr.blk:hover td{background:var(--surface-2)}
+mark{background:var(--accent-soft);color:var(--ink);border-radius:2px;padding:0 1px}
+.empty{padding:34px 16px;text-align:center;color:var(--ink-3);font-size:14px}
+
+/* tooltip */
+#tip{
+  position:fixed;z-index:60;pointer-events:none;opacity:0;transition:opacity .1s;
+  background:var(--surface);border:1px solid var(--line-2);border-radius:8px;
+  box-shadow:var(--shadow);padding:9px 11px;font-size:12.5px;min-width:180px;max-width:280px;
+}
+#tip .tt{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:14px;margin-bottom:5px}
+#tip .tr{display:flex;align-items:center;gap:7px;justify-content:space-between;padding:1.5px 0}
+#tip .tr span{display:flex;align-items:center;gap:6px;color:var(--ink-2)}
+#tip .sw{width:9px;height:9px;border-radius:2px;flex:none}
+#tip .tv{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+#tip .sep{border-top:1px solid var(--line);margin:5px 0 4px}
+.foot{margin-top:22px;font-size:12px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:4px 18px;justify-content:space-between}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms !important}}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <h1>Sedute di allenamento <span class="light">Atl. Lodigiani 2026/27</span></h1>
+    <span class="sub" id="periodo"></span>
+  </div>
+  <div class="wrap" style="padding-bottom:0">
+    <div class="kpis" id="kpis"></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="grid2">
+    <section class="card" id="chartcard">
+      <div class="card-h">
+        <h2>Carico per giorno</h2>
+        <span class="hint">minuti per tipo di lavoro &middot; clicca una barra per isolare il giorno</span>
+      </div>
+      <div class="legend" id="legend"></div>
+      <div class="card-b" style="padding-top:14px">
+        <div class="chartwrap" id="chartwrap">
+          <div class="yaxis" id="yaxis"></div>
+          <div class="bars" id="bars"></div>
+          <div class="xaxis" id="xaxis"></div>
+          <div class="xmonth" id="xmonth"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-h"><h2>Distribuzione dei contenuti</h2><span class="hint">minuti totali nel periodo</span></div>
+      <div class="card-b"><div class="dist" id="dist"></div></div>
+      <div class="card-h" style="padding-top:6px"><h2 style="font-size:15px">Riepilogo settimane</h2></div>
+      <div class="card-b">
+        <table class="wk"><thead><tr><th>Settimana</th><th>Sedute</th><th>Min</th><th>Media</th></tr></thead>
+        <tbody id="weeks"></tbody></table>
+      </div>
+    </section>
+  </div>
+
+  <section class="card" style="margin-top:18px" id="tablecard">
+    <div class="card-h">
+      <h2>Registro completo</h2>
+      <span class="hint">tutte le righe dello sheet &ldquo;Sedute Allenamento&rdquo;</span>
+    </div>
+    <div class="filters">
+      <input type="search" id="q" placeholder="Cerca in programma, esercizi, note, giocatori&hellip;" aria-label="Cerca">
+      <select id="fTipo" aria-label="Tipo di seduta"><option value="">Tutti i tipi</option></select>
+      <select id="fFascia" aria-label="Fascia oraria"><option value="">Mattina e pomeriggio</option><option>Mattina</option><option>Pomeriggio</option></select>
+      <select id="fWeek" aria-label="Settimana"><option value="">Tutte le settimane</option></select>
+      <button class="btn" id="fDoppie" aria-pressed="false">Solo doppie sedute</button>
+      <button class="btn" id="fView" aria-pressed="false">Vista piatta</button>
+      <button class="btn" id="fReset">Azzera filtri</button>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="chipbar" id="chips"></div>
+    <div class="tscroll"><div id="tableHost"></div></div>
+  </section>
+
+  <div class="foot">
+    <span>Fonte: <b>Atletico Lodigiani 202627 1.xlsx</b> &mdash; foglio &ldquo;Sedute Allenamento&rdquo;. Le categorie sono derivate dal testo di <i>Programma</i> ed <i>Esercizi</i>; il testo originale resta sempre visibile in tabella.</span>
+    <span id="tot-note"></span>
+  </div>
+</div>
+
+<div id="tip" role="status" aria-live="off"></div>
+
+<script id="dati" type="application/json">{"meta":{"squadra":"Atl. Lodigiani","stagione":"2026/27","dal":"2026-07-20","al":"2026-08-22","ordine":["Attivazione & scarico","Tecnica","Possesso","Tattica & sviluppi","Partita","Forza & core","Condizionale","Amichevole"]},"giorni":[{"d":"2026-07-20","dow":"lun","lbl":"20 lug","gg":20,"mese":"lug","week":"2026-W30","sedute":[{"n":1,"ora":"18.00","luogo":"Roma","calciatori":"n. calciatori 14","nc":14,"tipo":"Allenamento","fascia":"Pomeriggio","tot":87,"sum":87,"labelDiff":"ASSENTI","diff":["Battisti","Dadic","Mastino","Servat","Iovieno","Petrone"],"inf":["Sani (lesione bicipite femorale)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità + andature","spazio":"","note":"Sani ha svolto questa parte senza avvertire fastidi","min":15.0,"cat":"Attivazione & scarico"},{"programma":"","esercizi":"core","spazio":"","note":"","min":5.0,"cat":"Forza & core"},{"programma":"","esercizi":"attivazione tecnica","spazio":"","note":"","min":30.0,"cat":"Tecnica"},{"programma":"possesso","esercizi":"7VS7","spazio":"30x30m","note":"","min":12.0,"cat":"Possesso"},{"programma":"lavoro aerobico","esercizi":"capacità aerobica CCVV 2x6'(30-30)","spazio":"","note":"","min":15.0,"cat":"Condizionale"},{"programma":"scarico","esercizi":"","spazio":"","note":"","min":10.0,"cat":"Attivazione & scarico"}]}]},{"d":"2026-07-21","dow":"mar","lbl":"21 lug","gg":21,"mese":"lug","week":"2026-W30","sedute":[{"n":2,"ora":"17.30","luogo":"Roma","calciatori":"n. calciatori 16","nc":16,"tipo":"Allenamento","fascia":"Pomeriggio","tot":116,"sum":116,"labelDiff":"ASSENTI","diff":["Servat","Dadic","Iovieno","Petrone"],"inf":["Sani (lesione bicipite femorale)","pulcini (febbre)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità + isometrie","spazio":"","note":"Sani ha svolto riscaldamento + circuito di forza senza avvertire fastidi","min":15.0,"cat":"Attivazione & scarico"},{"programma":"circuito di forza - core","esercizi":"squat - push press - pallof press - stacchi - rematore trx - lancio palla medica - copenaghen plank - spinte verticali - affondi","spazio":"a stazioni","note":"2 giri x 9' + 1' di pausa tra i giri (30'' lavoro - 30'' recupero)","min":40.0,"cat":"Forza & core"},{"programma":"palla a coppia","esercizi":"","spazio":"","note":"","min":5.0,"cat":"Tecnica"},{"programma":"attivazione tecnica","esercizi":"doppio rombo + sviluppi cross + tiro","spazio":"","note":"","min":30.0,"cat":"Tattica & sviluppi"},{"programma":"partita finale","esercizi":"8vs8","spazio":"","note":"","min":16.0,"cat":"Partita"},{"programma":"scarico","esercizi":"","spazio":"","note":"","min":10.0,"cat":"Attivazione & scarico"}]}]},{"d":"2026-07-22","dow":"mer","lbl":"22 lug","gg":22,"mese":"lug","week":"2026-W30","sedute":[{"n":3,"ora":"17.30","luogo":"Roma","calciatori":"n. calciatori 17","nc":17,"tipo":"Allenamento","fascia":"Pomeriggio","tot":95,"sum":95,"labelDiff":"ASSENTI","diff":["Dadic","Servat","Iovieno"],"inf":["Sani (lesione bicipite femorale)","pulcini (febbre)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità + andature","spazio":"","note":"Sani ha svolto questa parte senza avvertire fastidi","min":15.0,"cat":"Attivazione & scarico"},{"programma":"","esercizi":"core","spazio":"","note":"","min":5.0,"cat":"Forza & core"},{"programma":"","esercizi":"attivazione tecnica","spazio":"","note":"","min":25.0,"cat":"Tecnica"},{"programma":"possesso","esercizi":"8vs8 + 1 jolly 3 blocchi da 5'","spazio":"ampiezza area - area/centrocampo","note":"","min":20.0,"cat":"Possesso"},{"programma":"partita","esercizi":"8vs8 + 1 jolly","spazio":"","note":"","min":15.0,"cat":"Partita"},{"programma":"lavoro aerobico","esercizi":"capacità aerobica CCVV 2x6'(40-20) + 2' rest","spazio":"","note":"","min":15.0,"cat":"Condizionale"}]}]},{"d":"2026-07-23","dow":"gio","lbl":"23 lug","gg":23,"mese":"lug","week":"2026-W30","sedute":[{"n":4,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 18","nc":18,"tipo":"Allenamento","fascia":"Mattina","tot":89,"sum":89,"labelDiff":"ASSENTI","diff":["Dadic","Iovieno"],"inf":["Sani (lesione bicipite femorale)","pulcini (febbre)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità","spazio":"","note":"Sani ha svolto riscaldamento + circuito di forza senza avvertire fastidi","min":15.0,"cat":"Attivazione & scarico"},{"programma":"circuito di forza - core","esercizi":"squat - push up - plank lat + remata - stacchi - rematore manubri plank - lancio palla medica - affondi laterali - plank + ginocchiata - hip trust","spazio":"a stazioni","note":"2 giri x 9' + 1' di pausa tra i giri (30'' lavoro - 30'' recupero)","min":40.0,"cat":"Forza & core"},{"programma":"palla a coppia","esercizi":"","spazio":"","note":"Servat effettua 2 serie da 8' con allungo sul lato lungo e corsa blanda sul lato corto","min":5.0,"cat":"Tecnica"},{"programma":"attivazione tecnica","esercizi":"rondos","spazio":"","note":"","min":9.0,"cat":"Possesso"},{"programma":"partite doppia area","esercizi":"8vs7 sponde laterali/verticali","spazio":"","note":"Mastino non ha effettuato le partite per problemi con le vesciche","min":10.0,"cat":"Partita"},{"programma":"partita","esercizi":"8vs7","spazio":"","note":"","min":10.0,"cat":"Partita"}]},{"n":5,"ora":"16.30","luogo":"Roma","calciatori":"n. calciatori 16","nc":16,"tipo":"Allenamento","fascia":"Pomeriggio","tot":75,"sum":75,"labelDiff":"ASSENTI","diff":["Dadic","Iovieno","Sini"],"inf":["Sani (lesione bicipite femorale)","pulcini (febbre)","Rendine (vesciche)","Petrone (vesciche)","Mastino (vesciche)"],"blocchi":[{"programma":"attivazione tecnica individuale","esercizi":"mobilità + tecnica","spazio":"","note":"Mastino e Rendine effettuano solo questa parte d'allenamento","min":15.0,"cat":"Tecnica"},{"programma":"calcio tennis","esercizi":"","spazio":"","note":"","min":15.0,"cat":"Tecnica"},{"programma":"sviluppi cross + tiro","esercizi":"","spazio":"","note":"","min":30.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"8vs8","spazio":"","note":"","min":15.0,"cat":"Partita"}]}]},{"d":"2026-07-24","dow":"ven","lbl":"24 lug","gg":24,"mese":"lug","week":"2026-W30","sedute":[{"n":6,"ora":"17.30","luogo":"Roma","calciatori":"n. calciatori 17","nc":17,"tipo":"Allenamento","fascia":"Pomeriggio","tot":90,"sum":90,"labelDiff":"ASSENTI","diff":[],"inf":["Sani (lesione bicipite femorale)","pulcini (febbre)","Mastino (vesciche)","De Cortes (vesciche)","Petrone (vescciche)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità + andature","spazio":"","note":"","min":15.0,"cat":"Attivazione & scarico"},{"programma":"","esercizi":"core","spazio":"","note":"","min":5.0,"cat":"Forza & core"},{"programma":"","esercizi":"palla a coppie","spazio":"","note":"","min":5.0,"cat":"Tecnica"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"","min":15.0,"cat":"Tecnica"},{"programma":"possesso","esercizi":"","spazio":"","note":"","min":15.0,"cat":"Possesso"},{"programma":"partita","esercizi":"10vs9","spazio":"","note":"","min":20.0,"cat":"Partita"},{"programma":"lavoro aerobico","esercizi":"capacità aerobica CCVV 2x6'(20-20) + 2' rest","spazio":"","note":"Mastino e De Cortes effettuano 3 serie da 8' (20''-20'') Petrone 2 blocchi da 10' (30''-30'') sulla bike","min":15.0,"cat":"Condizionale"}]}]},{"d":"2026-07-25","dow":"sab","lbl":"25 lug","gg":25,"mese":"lug","week":"2026-W30","sedute":[{"n":7,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 18","nc":18,"tipo":"Allenamento","fascia":"Mattina","tot":62,"sum":62,"labelDiff":"ASSENTI","diff":[],"inf":["Sani (lesione bicipite femorale)","pulcini (febbre)","Rendine (vesciche)","Sini (fastidio testicolo sx)"],"blocchi":[{"programma":"attivazione pre gara","esercizi":"core","spazio":"","note":"","min":5.0,"cat":"Attivazione & scarico"},{"programma":"","esercizi":"mobilità e andature","spazio":"","note":"","min":10.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"","min":10.0,"cat":"Tecnica"},{"programma":"rapidità","esercizi":"","spazio":"","note":"","min":2.0,"cat":"Condizionale"},{"programma":"partita","esercizi":"11vs11","spazio":"75x60m","note":"Bigi in un contrasto si fa male al ginocchio","min":35.0,"cat":"Partita"}]}]},{"d":"2026-07-26","dow":"dom","lbl":"26 lug","gg":26,"mese":"lug","week":"2026-W30","sedute":[]},{"d":"2026-07-27","dow":"lun","lbl":"27 lug","gg":27,"mese":"lug","week":"2026-W31","sedute":[{"n":8,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 20","nc":20,"tipo":"Allenamento","fascia":"Mattina","tot":96,"sum":96,"labelDiff":"ASSENTI","diff":["Fiorentini (vacanza)"],"inf":["Sani (lesione bicipite femorale)","Pulcini (febbre)","Bigi (LCA)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità","spazio":"","note":"","min":10.0,"cat":"Attivazione & scarico"},{"programma":"circuito di forza","esercizi":"squat - stacchi - hip trust - copenaghen - push press - rematore trx - shoulder press - palla medica - dead bug - rematore","spazio":"","note":"","min":40.0,"cat":"Forza & core"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"","min":15.0,"cat":"Tecnica"},{"programma":"partita in doppia area","esercizi":"","spazio":"","note":"","min":16.0,"cat":"Partita"},{"programma":"partita metà campo","esercizi":"11vs11","spazio":"","note":"","min":15.0,"cat":"Partita"}]},{"n":9,"ora":"16.30","luogo":"Roma","calciatori":"n. calciatori 20","nc":20,"tipo":"Allenamento","fascia":"Pomeriggio","tot":80,"sum":80,"labelDiff":"ASSENTI","diff":["Fiorentini (vacanza)"],"inf":["Sani (lesione bicipite femorale)","Pulcini (febbre)","Bigi (LCA)"],"blocchi":[{"programma":"attivazione divertente","esercizi":"mobilità + tecnica + agility","spazio":"","note":"","min":15.0,"cat":"Tecnica"},{"programma":"sviluppi","esercizi":"","spazio":"","note":"","min":20.0,"cat":"Tattica & sviluppi"},{"programma":"lavoro tattico","esercizi":"6vs4","spazio":"","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"possesso palla","esercizi":"6vs6 + 8 sponde laterali","spazio":"","note":"","min":15.0,"cat":"Possesso"},{"programma":"partita metà campo","esercizi":"11vs11","spazio":"","note":"","min":15.0,"cat":"Partita"}]}]},{"d":"2026-07-28","dow":"mar","lbl":"28 lug","gg":28,"mese":"lug","week":"2026-W31","sedute":[{"n":10,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 20","nc":20,"tipo":"Test","fascia":"Mattina","tot":60,"sum":60,"labelDiff":"ASSENTI","diff":["Fiorentini (vacanza)"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Iovieno (affaticamento adduttore/flessore sx)"],"blocchi":[{"programma":"TEST DI GACON","esercizi":"battisti - costantini - esposito - dadic - concetti - voncina","spazio":"","note":"Ferrara ha già effettuato il test di Gacon ad Arezzo","min":20.0,"cat":"Condizionale"},{"programma":"","esercizi":"mastino - servat - iovieno - petrone - camilloni - rendine - ferrera","spazio":"","note":"Pulcini ritorna in campo effettua 20' di corsa blanda","min":20.0,"cat":"Condizionale"},{"programma":"","esercizi":"mariotti - de cortes - aldrighi - d'argenio - della corte - urbinati - lozito","spazio":"","note":"","min":20.0,"cat":"Condizionale"}]},{"n":11,"ora":"16.30","luogo":"Roma","calciatori":"n. calciatori 20","nc":20,"tipo":"Allenamento","fascia":"Pomeriggio","tot":87,"sum":87,"labelDiff":"ASSENTI","diff":["Fiorentini (vacanza)"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Iovieno (affaticamento adduttore/flessore sx)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità + andature","spazio":"","note":"Pulcini effettua il lavoro tecnico con la squadra ed un lavoro aerobico 2x6' (lato corto allungo - lato lungo recupero)","min":15.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"","min":30.0,"cat":"Tecnica"},{"programma":"possesso palla","esercizi":"4vs4+1Jolly - 4vs4 + 3 jolly","spazio":"","note":"Esposito si ferma per un affaticamento all'adduttore dx","min":16.0,"cat":"Possesso"},{"programma":"partita","esercizi":"11vs10","spazio":"metà campo","note":"","min":16.0,"cat":"Partita"},{"programma":"scarico","esercizi":"","spazio":"","note":"","min":10.0,"cat":"Attivazione & scarico"}]}]},{"d":"2026-07-29","dow":"mer","lbl":"29 lug","gg":29,"mese":"lug","week":"2026-W31","sedute":[{"n":12,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 21","nc":21,"tipo":"Allenamento","fascia":"Mattina","tot":85,"sum":85,"labelDiff":"ASSENTI","diff":["Fiorentini (vacanza)"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Iovieno (affaticamento adduttore/flessore sx)","Esposito (affaticamento adduttore dx)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità + elastici","spazio":"","note":"","min":15.0,"cat":"Attivazione & scarico"},{"programma":"gruppo difensori","esercizi":"lavoro tattico - forza","spazio":"","note":"Pulcini effettua il lavoro tattico sia con i difensori che con gli attaccanti","min":25.0,"cat":"Tattica & sviluppi"},{"programma":"gruppo centrocampisti e attaccanti","esercizi":"forza - lavoro tattico","spazio":"","note":"","min":25.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"11vs11","spazio":"metà campo","note":"Urbinati si ferma per le vesciche","min":20.0,"cat":"Partita"}]}]},{"d":"2026-07-30","dow":"gio","lbl":"30 lug","gg":30,"mese":"lug","week":"2026-W31","sedute":[{"n":13,"ora":"16.00","luogo":"Roma","calciatori":"n. calciatori 22","nc":22,"tipo":"Allenamento","fascia":"Pomeriggio","tot":90,"sum":90,"labelDiff":"DIFFERENZIATO","diff":["Esposito","Iovieno"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Esposito (affaticamento adduttore dx)","Iovieno (affaticamento adduttore/flessore sx)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - core","spazio":"","note":"Esposito e Iovieno effettuano il riscaldamento a secco con la squadra","min":15.0,"cat":"Attivazione & scarico"},{"programma":"palla a coppie","esercizi":"","spazio":"","note":"","min":10.0,"cat":"Tecnica"},{"programma":"sviluppi","esercizi":"","spazio":"","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"lavoro tattico","esercizi":"6vs4","spazio":"","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"piazzati","esercizi":"","spazio":"","note":"","min":5.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"11vs11","spazio":"75x60m","note":"Concetti si ferma per un fastidio muscolare al flessore","min":30.0,"cat":"Partita"}]}]},{"d":"2026-07-31","dow":"ven","lbl":"31 lug","gg":31,"mese":"lug","week":"2026-W31","sedute":[{"n":14,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 22","nc":22,"tipo":"Allenamento","fascia":"Mattina","tot":62,"sum":62,"labelDiff":"DIFFERENZIATO","diff":["Esposito","Iovieno"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Esposito (affaticamento adduttore dx)","Iovieno (affaticamento adduttore/flessore sx)","Concetti (affaticamento flessore sx)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - core","spazio":"","note":"Esposito e Iovieno effettuano il riscaldamento a secco con la squadra e la parte tecnica senza fastidi","min":15.0,"cat":"Attivazione & scarico"},{"programma":"palla a coppie","esercizi":"","spazio":"","note":"","min":5.0,"cat":"Tecnica"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"","min":15.0,"cat":"Tecnica"},{"programma":"possesso palla","esercizi":"7vs4 + 3 in linea d'attesa + 7 nell'altro campo","spazio":"","note":"","min":12.0,"cat":"Possesso"},{"programma":"lavoro aerobico","esercizi":"2 serie da 6' (30\"-30\")","spazio":"","note":"","min":15.0,"cat":"Condizionale"}]},{"n":15,"ora":"16.30","luogo":"Roma","calciatori":"n. calciatori 21","nc":21,"tipo":"Allenamento","fascia":"Pomeriggio","tot":80,"sum":80,"labelDiff":"DIFFERENZIATO","diff":["Esposito","Iovieno"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Esposito (affaticamento adduttore dx)","Iovieno (affaticamento adduttore/flessore sx)","Concetti (affaticamento flessore sx)"],"blocchi":[{"programma":"attivazione divertente","esercizi":"canestro nei secchi","spazio":"","note":"Esposito e Iovieno effettuano il riscaldamento e lavoro aerobico 2 serie da 6'(lato corto allungo lato lungo blanda)","min":15.0,"cat":"Attivazione & scarico"},{"programma":"sviluppi","esercizi":"squadre schierate","spazio":"metà campo","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"lavoro tattico","esercizi":"pressioni difesa a 4 e a 3","spazio":"","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"calci piazzati","esercizi":"punizioni laterali e centrali","spazio":"","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"11vs11","spazio":"metà campo","note":"","min":20.0,"cat":"Partita"}]}]},{"d":"2026-08-01","dow":"sab","lbl":"1 ago","gg":1,"mese":"ago","week":"2026-W31","sedute":[{"n":16,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 22","nc":22,"tipo":"Allenamento","fascia":"Mattina","tot":46,"sum":46,"labelDiff":"DIFFERENZIATO","diff":["Iovieno"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Iovieno (affaticamento adduttore/flessore sx)","Concetti (affaticamento flessore sx)"],"blocchi":[{"programma":"attivazione libera","esercizi":"","spazio":"","note":"Esposito effettua tutto l'allenamento con la squadra","min":3.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"squadre schierate + muovo palla","spazio":"","note":"","min":5.0,"cat":"Tecnica"},{"programma":"attivazione a secco","esercizi":"mobilità + andature","spazio":"","note":"","min":5.0,"cat":"Attivazione & scarico"},{"programma":"possesso","esercizi":"11vs11","spazio":"metà campo - area di rigore","note":"","min":5.0,"cat":"Possesso"},{"programma":"rapidità","esercizi":"cerchi + ostacoli laterali","spazio":"","note":"","min":3.0,"cat":"Condizionale"},{"programma":"lavoro tattico","esercizi":"costruzione dal basso","spazio":"","note":"","min":5.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"11vs11","spazio":"metà campo","note":"","min":20.0,"cat":"Partita"}]}]},{"d":"2026-08-02","dow":"dom","lbl":"2 ago","gg":2,"mese":"ago","week":"2026-W31","sedute":[{"n":17,"ora":"10.30","luogo":"Roma","calciatori":"n. calciatori 22","nc":22,"tipo":"Amichevole","fascia":"Mattina","tot":90,"sum":90,"labelDiff":"DIFFERENZIATO","diff":[],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Iovieno (affaticamento adduttore/flessore sx)","Concetti (affaticamento flessore sx)"],"blocchi":[{"programma":"amichevole vs Tivoli (1 tempo)","esercizi":"DI GIOSIA - CAMILLONI - BATTISTI - COSTANTINI - PETRONE - DADIC - FERRARA - ESPOSITO - MASTINO - RENDINE - VONCINA","spazio":"","note":"","min":45.0,"cat":"Amichevole"},{"programma":"amichevole vs Tivoli (2 tempo)","esercizi":"DI GIOSIA (CALCATERRA - SALIOLA) - PULCINI - BATTISTI (DELLA CORTE 70') - COSTANTINI (ALDRIGHI 80') - CAMILLONI (FERRERA 60') - DADIC (DE CORTES 60') - FERRARA (URBINATI 77') - ESPOSITO (FIORENTINI 67') - SERVAT - RENDINE (JONAH)  66') - VONCINA","spazio":"","note":"","min":45.0,"cat":"Amichevole"}]}]},{"d":"2026-08-03","dow":"lun","lbl":"3 ago","gg":3,"mese":"ago","week":"2026-W32","sedute":[]},{"d":"2026-08-04","dow":"mar","lbl":"4 ago","gg":4,"mese":"ago","week":"2026-W32","sedute":[{"n":18,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 21","nc":21,"tipo":"Allenamento","fascia":"Mattina","tot":90,"sum":90,"labelDiff":"DIFFERENZIATO","diff":["Iovieno"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Mariotti (febbre)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - core","spazio":"","note":"Iovieno effettua riscaldamento e parte tecnica con la squadra e 2 serie da 8' di lavoro aerobico","min":15.0,"cat":"Attivazione & scarico"},{"programma":"palla a coppie","esercizi":"","spazio":"","note":"","min":8.0,"cat":"Tecnica"},{"programma":"sviluppi","esercizi":"10vs0","spazio":"","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"lavoro tattico","esercizi":"7vs10","spazio":"","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"possesso palla","esercizi":"6vs6 + 4 + 4 sponde","spazio":"","note":"","min":12.0,"cat":"Possesso"},{"programma":"lavoro aerobico","esercizi":"4x4' + 3' rest","spazio":"","note":"hanno effettuato 3 blocchi Pulcini - Battisti - Costantini - Ferrara - Esposito - Voncina (solo 2)","min":25.0,"cat":"Condizionale"}]},{"n":19,"ora":"16.30","luogo":"Roma","calciatori":"n. calciatori 21","nc":21,"tipo":"Allenamento","fascia":"Pomeriggio","tot":78,"sum":78,"labelDiff":"DIFFERENZIATO","diff":["Iovieno"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Mariotti (febbre)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - divertente","spazio":"","note":"","min":15.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"","min":15.0,"cat":"Tecnica"},{"programma":"sviluppi","esercizi":"10vs0","spazio":"","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"possesso palla","esercizi":"4vs4 + 3J","spazio":"30x20","note":"Fiorentini si ferma per un fastidio all'adduttore","min":9.0,"cat":"Possesso"},{"programma":"possesso palla","esercizi":"4vs4 + 1J","spazio":"20x20","note":"Esposito sente un affaticamento all'adduttore","min":9.0,"cat":"Possesso"},{"programma":"partita","esercizi":"11vs10","spazio":"metà campo","note":"Iovieno effettua tutto l'allenamento tranne la partita","min":15.0,"cat":"Partita"}]}]},{"d":"2026-08-05","dow":"mer","lbl":"5 ago","gg":5,"mese":"ago","week":"2026-W32","sedute":[{"n":20,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 21","nc":21,"tipo":"Allenamento","fascia":"Mattina","tot":95,"sum":95,"labelDiff":"DIFFERENZIATO","diff":["Esposito","Fiorentini"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Mariotti (febbre)","Fiorentini (pubalgia)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità + elastici","spazio":"","note":"","min":15.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"palla singola - a coppie - triangolazione","spazio":"","note":"","min":10.0,"cat":"Tecnica"},{"programma":"forza","esercizi":"squat (60/70kg) - hip trust (70kg) - stacchi (40kg) - step up (8kg) - pallof press - push press - trx - military - curl+alzate - plank - palla medica - palla medica","spazio":"","note":"Esposito e Fiorentini effettuano il lavoro di forza e si fermano","min":50.0,"cat":"Forza & core"},{"programma":"partita","esercizi":"partite in doppia area","spazio":"","note":"","min":20.0,"cat":"Partita"}]},{"n":21,"ora":"16.30","luogo":"Roma","calciatori":"n. calciatori 19","nc":19,"tipo":"Allenamento","fascia":"Pomeriggio","tot":80,"sum":80,"labelDiff":"DIFFERENIATO","diff":[],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Esposito (affaticamento adduttore)","Mariotti (febbre)","Fiorentini (pubalgia)"],"blocchi":[{"programma":"attivazione ludica","esercizi":"mobilità - andature - canestro a coppie o gruppi di tre","spazio":"","note":"","min":20.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"rondos 4vs2","spazio":"","note":"","min":10.0,"cat":"Possesso"},{"programma":"attivazione tecnica","esercizi":"rondos 2vs2 + 6 sponde","spazio":"","note":"","min":10.0,"cat":"Possesso"},{"programma":"sviluppi","esercizi":"combinazioni + cross + tiri","spazio":"","note":"","min":20.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"11vs10","spazio":"metà campo","note":"","min":20.0,"cat":"Partita"}]}]},{"d":"2026-08-06","dow":"gio","lbl":"6 ago","gg":6,"mese":"ago","week":"2026-W32","sedute":[{"n":22,"ora":"16.00","luogo":"Roma","calciatori":"n. calciatori 20","nc":20,"tipo":"Allenamento","fascia":"Pomeriggio","tot":75,"sum":75,"labelDiff":"DIFFERENZIATO","diff":[],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Fiorentini (pubalgia)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - core","spazio":"","note":"","min":15.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"","min":15.0,"cat":"Tecnica"},{"programma":"possesso","esercizi":"4vs4 + 2 J","spazio":"25x25m","note":"","min":10.0,"cat":"Possesso"},{"programma":"partita","esercizi":"11vs11","spazio":"75x60m","note":"Esposito si ferma per il solito fastidio all'adduttore","min":35.0,"cat":"Partita"}]}]},{"d":"2026-08-07","dow":"ven","lbl":"7 ago","gg":7,"mese":"ago","week":"2026-W32","sedute":[{"n":23,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 20","nc":20,"tipo":"Allenamento","fascia":"Mattina","tot":95,"sum":95,"labelDiff":"ASSENTI","diff":[],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Fiorentini (pubalgia)","Esposito (affaticamento adduttore)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - core - elastici","spazio":"","note":"","min":15.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"1vs1","spazio":"","note":"","min":15.0,"cat":"Tecnica"},{"programma":"pliometria","esercizi":"pogo - step down - CMJ - balzi in avanzamento","spazio":"","note":"","min":15.0,"cat":"Condizionale"},{"programma":"tattica","esercizi":"squadre contrapposte - scivolamenti + sviluppi","spazio":"","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"partita + calci d'angolo","esercizi":"11vs11","spazio":"75x60m","note":"Bonanni si ferma per un fastidio al gluteo dx","min":35.0,"cat":"Partita"}]}]},{"d":"2026-08-08","dow":"sab","lbl":"8 ago","gg":8,"mese":"ago","week":"2026-W32","sedute":[{"n":24,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 22","nc":22,"tipo":"Allenamento","fascia":"Mattina","tot":46,"sum":46,"labelDiff":"DIFFERENZIATO","diff":["Esposito","Sani","Concetti"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Fiorentini (pubalgia)","Esposito (affaticamento adduttore)"],"blocchi":[{"programma":"attivazione libera","esercizi":"","spazio":"","note":"Esposito effettua 2 blocchi di corsa da 8' (10\" di allungo sui 50m e 20\" recupero passivo)","min":3.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"squadre schierate + muovo palla","spazio":"","note":"Sani effettua 2 blocchi da 8' (allungo lato corto - corsa blanda lato lungo)","min":5.0,"cat":"Tecnica"},{"programma":"attivazione a secco","esercizi":"mobilità + andature","spazio":"","note":"Concetti effettua lavori isometrici (wall sit-ponte-split squat-adductor)","min":5.0,"cat":"Attivazione & scarico"},{"programma":"possesso","esercizi":"11vs11","spazio":"metà campo - area di rigore","note":"","min":5.0,"cat":"Possesso"},{"programma":"rapidità","esercizi":"cerchi + ostacoli laterali","spazio":"","note":"","min":3.0,"cat":"Condizionale"},{"programma":"lavoro tattico","esercizi":"costruzione dal basso","spazio":"","note":"","min":5.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"11vs11","spazio":"metà campo","note":"","min":20.0,"cat":"Partita"}]}]},{"d":"2026-08-09","dow":"dom","lbl":"9 ago","gg":9,"mese":"ago","week":"2026-W32","sedute":[{"n":25,"ora":"17.30","luogo":"Roma","calciatori":"n. calciatori 17","nc":17,"tipo":"Amichevole","fascia":"Pomeriggio","tot":90,"sum":90,"labelDiff":"DIFFERENZIATO","diff":[],"inf":[],"blocchi":[{"programma":"amichevole vs Montespaccato (1 tempo)","esercizi":"DI GIOSIA - CAMILLONI - BATTISTI - COSTANTINI - PULCINI - FERRARA - DADIC - RENDINE - MASTINO - SERVAT - VONCINA","spazio":"","note":"Esposito effettua copenaghen - adductor con elastico - stacco ad una gamba - ponte monopodalico (3 serie da 8 reps) + lavoro aerobico 2 x 6' (lato corto allungo - lato lungo corsa blanda)","min":45.0,"cat":"Amichevole"},{"programma":"amichevole vs Montespaccato (2 tempo)","esercizi":"DI GIOSIA (SALIOLA) - PULCINI (MARIOTTI 60')- BATTISTI - COSTANTINI (CAMILLONI 80') - PETRONE - FERRARA (70' URBINATI) - DADIC - RENDINE (DE CORTES 60') - SERVAT (FERRERA 60') - IOVIENO - VONCINA (LANCIA 80')","spazio":"","note":"Fiorentini e Concetti effettuano 2 serie da 8' (10\" - 20\") in allungo sui 50m. Sani effettua 2 serie da 8' (lato lungo allungo - lato corto corsa blanda)","min":45.0,"cat":"Amichevole"}]}]},{"d":"2026-08-10","dow":"lun","lbl":"10 ago","gg":10,"mese":"ago","week":"2026-W33","sedute":[{"n":26,"ora":"16.00","luogo":"Roma","calciatori":"n. calciatori 14 + 5 differenziati","nc":14,"tipo":"Allenamento","fascia":"Pomeriggio","tot":65,"sum":65,"labelDiff":"DIFFERENZIATO","diff":["Esposito","Sani","Concetti"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Esposito (affaticamento adduttore)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - core","spazio":"","note":"Battisiti - Voncina - Costantini - Dadic - Ferrara effettuano l'attivazione con la squadra e lavoro aerobico di recupero attivo 2 x 6' (10\"-20\")","min":20.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"Sani effettua lavoro aerobico 2 serie x 8' (30\"blanda - 30\" allungo)","min":15.0,"cat":"Tecnica"},{"programma":"possesso o partita doppia aerea","esercizi":"","spazio":"","note":"Concetti effettua lavoro aerobico 3 serie x 6' (10\" allungo - 50\" recupero blando)","min":15.0,"cat":"Possesso"},{"programma":"lavoro aerobico","esercizi":"2 blocchi di corsa sui 150 m 5' (30\"-30\")","spazio":"","note":"30' (Ferrera - Urbinati - De cortes - Mariotti - Lancia) 45' (Petrone - Mastino - Iovieno) - 60' (Camilloni - Pulcini - Rendine - Servat)","min":15.0,"cat":"Condizionale"},{"programma":"","esercizi":"","spazio":"","note":"Mastino si ferma per un fastidio al tendine d'achille","min":0,"cat":"Condizionale"}]}]},{"d":"2026-08-11","dow":"mar","lbl":"11 ago","gg":11,"mese":"ago","week":"2026-W33","sedute":[{"n":27,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori  18","nc":18,"tipo":"Allenamento","fascia":"Mattina","tot":95,"sum":95,"labelDiff":"DIFFERENZIATO","diff":["Esposito","Sani","Concetti","Mastino"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Esposito (affaticamento adduttore/retto femore)","Mastino (tendinopatia achillea)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - core - elastici","spazio":"","note":"Concetti e Sani effettuano il lavoro di forza come la squadra + 2 blocchi di corsa da 8' (lato corto blando - lato lungo allungo)","min":20.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"Mastino effettua il lavoro di forza come la squadra","min":15.0,"cat":"Tecnica"},{"programma":"forza","esercizi":"Split squat - stacco mono - hip trust - push press - rematore - lento avanti - pallof press - palla medica - plank + ket laterale","spazio":"","note":"Esposito effettua solo attivazione a secco + lavoro arti superiori","min":30.0,"cat":"Forza & core"},{"programma":"tattica","esercizi":"pressioni palla dal fondo","spazio":"","note":"","min":15.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"11vs11","spazio":"75x60m","note":"","min":15.0,"cat":"Partita"}]}]},{"d":"2026-08-12","dow":"mer","lbl":"12 ago","gg":12,"mese":"ago","week":"2026-W33","sedute":[{"n":28,"ora":"16.00","luogo":"Roma","calciatori":"n. calciatori 17","nc":17,"tipo":"Amichevole","fascia":"Pomeriggio","tot":90,"sum":90,"labelDiff":"Mastino","diff":[],"inf":[],"blocchi":[{"programma":"amichevole vs Monterotondo (1 tempo)","esercizi":"","spazio":"","note":"Mastino effettua lavoro aerobico 2 x 6'(20-20) + 6' (15-15)","min":45.0,"cat":"Amichevole"},{"programma":"amichevole vs Monterotondo (2 tempo)","esercizi":"","spazio":"","note":"","min":45.0,"cat":"Amichevole"}]}]},{"d":"2026-08-13","dow":"gio","lbl":"13 ago","gg":13,"mese":"ago","week":"2026-W33","sedute":[{"n":29,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori  18","nc":18,"tipo":"Allenamento","fascia":"Mattina","tot":55,"sum":55,"labelDiff":"DIFFERENZIATO","diff":["Esposito","Sani","Concetti"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Esposito (affaticamento adduttore/retto femore)","Mastino (tendinopatia achillea)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - core","spazio":"","note":"Sani Concetti Esposito effettuano l'attivazione a secco con la squadra","min":20.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"","min":20.0,"cat":"Tecnica"},{"programma":"lavoro aerobico","esercizi":"2 serie da 6' (20-20) sui 100m - 2 serie da 6' (10-20) sui 50m per chi ha giocato più di 60'","spazio":"","note":"","min":15.0,"cat":"Condizionale"}]},{"n":30,"ora":"16.00","luogo":"Roma","calciatori":"n. calciatori  18","nc":18,"tipo":"Allenamento","fascia":"Pomeriggio","tot":55,"sum":55,"labelDiff":"DIFFERENZIATO","diff":["Esposito","Sani","Concetti","Mastino"],"inf":["Sani (lesione bicipite femorale)","Bigi (LCA)","Concetti (affaticamento flessore sx)","Esposito (affaticamento adduttore/retto femore)","Mastino (tendinopatia achillea)"],"blocchi":[{"programma":"attivazione divertenti","esercizi":"mobilità - andature - core","spazio":"","note":"Mastino effettua lavoro di forza","min":20.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"calcio tennis","spazio":"","note":"Esposito e Concetti sono a riposo","min":20.0,"cat":"Tecnica"},{"programma":"partita","esercizi":"9vs9","spazio":"","note":"","min":15.0,"cat":"Partita"}]}]},{"d":"2026-08-14","dow":"ven","lbl":"14 ago","gg":14,"mese":"ago","week":"2026-W33","sedute":[]},{"d":"2026-08-15","dow":"sab","lbl":"15 ago","gg":15,"mese":"ago","week":"2026-W33","sedute":[]},{"d":"2026-08-16","dow":"dom","lbl":"16 ago","gg":16,"mese":"ago","week":"2026-W33","sedute":[]},{"d":"2026-08-17","dow":"lun","lbl":"17 ago","gg":17,"mese":"ago","week":"2026-W34","sedute":[{"n":31,"ora":"14.30","luogo":"Roma","calciatori":"n. calciatori 23","nc":23,"tipo":"Allenamento","fascia":"Pomeriggio","tot":91,"sum":91,"labelDiff":"DIFFERENZIATO","diff":["Sani","Concetti"],"inf":["Bigi (LCA)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - core","spazio":"","note":"Sani avverte un leggero fastidio durante i passaggi ed effettua lavoro aerobico 2 x 8'(30''-30'')","min":20.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"","spazio":"","note":"Concetti effettua tutto l'allenamento con la squadra ad eccezione della partita","min":20.0,"cat":"Tecnica"},{"programma":"possesso","esercizi":"7vs7 + 7","spazio":"","note":"","min":20.0,"cat":"Possesso"},{"programma":"partita","esercizi":"","spazio":"","note":"","min":16.0,"cat":"Partita"},{"programma":"lavoro aerobico","esercizi":"CCVV 2 x 6' (1'-30''-20''-15''-10'')","spazio":"","note":"","min":15.0,"cat":"Condizionale"}]}]},{"d":"2026-08-18","dow":"mar","lbl":"18 ago","gg":18,"mese":"ago","week":"2026-W34","sedute":[{"n":32,"ora":"14.30","luogo":"Roma","calciatori":"n. calciatori 23","nc":23,"tipo":"Allenamento","fascia":"Pomeriggio","tot":85,"sum":85,"labelDiff":"DIFFERENZIATO","diff":["Sani"],"inf":["Bigi (LCA)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità - andature - core","spazio":"","note":"Sani effettua il riscaldamento a secco e lavoro aerobico di scarico 2 x 6' (10\"-20\")","min":15.0,"cat":"Attivazione & scarico"},{"programma":"palla a coppie","esercizi":"","spazio":"","note":"","min":10.0,"cat":"Tecnica"},{"programma":"attivazione tecnica","esercizi":"sviluppi","spazio":"metà campo","note":"","min":20.0,"cat":"Tattica & sviluppi"},{"programma":"lavoro tattico","esercizi":"10vs6","spazio":"","note":"","min":20.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"11vs11","spazio":"metà campo","note":"Concetti effettua tutto il lavoro con la squadra e gioca solo un tempo di partita","min":20.0,"cat":"Partita"}]}]},{"d":"2026-08-19","dow":"mer","lbl":"19 ago","gg":19,"mese":"ago","week":"2026-W34","sedute":[{"n":33,"ora":"9.30","luogo":"Roma","calciatori":"n. calciatori 22","nc":22,"tipo":"Allenamento","fascia":"Mattina","tot":85,"sum":85,"labelDiff":"DIFFERENZIATO","diff":["Sani"],"inf":["Bigi (LCA)"],"blocchi":[{"programma":"attivazione","esercizi":"mobilità + elastici","spazio":"","note":"","min":15.0,"cat":"Attivazione & scarico"},{"programma":"gruppo difensori","esercizi":"lavoro tattico - forza","spazio":"","note":"","min":25.0,"cat":"Tattica & sviluppi"},{"programma":"gruppo centrocampisti e attaccanti","esercizi":"forza - lavoro tattico","spazio":"","note":"","min":25.0,"cat":"Tattica & sviluppi"},{"programma":"partita in doppia area","esercizi":"7vs7","spazio":"metà campo","note":"","min":20.0,"cat":"Partita"}]},{"n":34,"ora":"14.30","luogo":"Roma","calciatori":"n. calciatori 22","nc":22,"tipo":"Allenamento","fascia":"Pomeriggio","tot":67,"sum":67,"labelDiff":"DIFFERENZIATO","diff":["Sani"],"inf":["Bigi (LCA)"],"blocchi":[{"programma":"attivazione ludica","esercizi":"agility e palleggi con secchioni","spazio":"","note":"","min":15.0,"cat":"Attivazione & scarico"},{"programma":"sviluppi","esercizi":"11vs1","spazio":"","note":"","min":10.0,"cat":"Tattica & sviluppi"},{"programma":"possesso","esercizi":"4vs4 + 3 J","spazio":"","note":"","min":10.0,"cat":"Possesso"},{"programma":"possesso","esercizi":"7vs7 + 4 + 4 sponde esterne","spazio":"","note":"","min":12.0,"cat":"Possesso"},{"programma":"partita","esercizi":"11vs11","spazio":"metà campo","note":"","min":20.0,"cat":"Partita"}]}]},{"d":"2026-08-20","dow":"gio","lbl":"20 ago","gg":20,"mese":"ago","week":"2026-W34","sedute":[{"n":35,"ora":"9.00","luogo":"Roma","calciatori":"n. calciatori 22","nc":22,"tipo":"Allenamento","fascia":"Mattina","tot":64,"sum":69,"labelDiff":"DIFFERENZIATO","diff":["Sani"],"inf":["Bigi (LCA)"],"blocchi":[{"programma":"attivazione","esercizi":"core mobilità andature","spazio":"","note":"Sani effettua lavoro aerobico 2 x 6' (30\"-30\") sui 150m","min":15.0,"cat":"Attivazione & scarico"},{"programma":"palla a coppie","esercizi":"","spazio":"","note":"","min":5.0,"cat":"Tecnica"},{"programma":"rondos di riaggressione","esercizi":"5vs3 interno - 6vs5","spazio":"10x15m","note":"","min":12.0,"cat":"Possesso"},{"programma":"rapidità","esercizi":"","spazio":"","note":"","min":5.0,"cat":"Condizionale"},{"programma":"sviluppi","esercizi":"11vs1","spazio":"","note":"","min":12.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"11vs11","spazio":"70x64m","note":"","min":20.0,"cat":"Partita"}]}]},{"d":"2026-08-21","dow":"ven","lbl":"21 ago","gg":21,"mese":"ago","week":"2026-W34","sedute":[{"n":36,"ora":"14.30","luogo":"Roma","calciatori":"n. calciatori 22","nc":22,"tipo":"Allenamento","fascia":"Pomeriggio","tot":46,"sum":46,"labelDiff":"DIFFERENZIATO","diff":["Sani"],"inf":["Bigi (LCA)"],"blocchi":[{"programma":"attivazione libera","esercizi":"","spazio":"","note":"","min":3.0,"cat":"Attivazione & scarico"},{"programma":"attivazione tecnica","esercizi":"squadre schierate + muovo palla","spazio":"","note":"","min":5.0,"cat":"Tecnica"},{"programma":"attivazione a secco","esercizi":"mobilità + andature","spazio":"","note":"","min":5.0,"cat":"Attivazione & scarico"},{"programma":"possesso","esercizi":"11vs11","spazio":"metà campo - area di rigore","note":"","min":5.0,"cat":"Possesso"},{"programma":"rapidità","esercizi":"cerchi + ostacoli laterali","spazio":"","note":"","min":3.0,"cat":"Condizionale"},{"programma":"lavoro tattico","esercizi":"costruzione dal basso","spazio":"","note":"","min":5.0,"cat":"Tattica & sviluppi"},{"programma":"partita","esercizi":"11vs11","spazio":"metà campo","note":"","min":20.0,"cat":"Partita"}]}]},{"d":"2026-08-22","dow":"sab","lbl":"22 ago","gg":22,"mese":"ago","week":"2026-W34","sedute":[{"n":37,"ora":"11.00","luogo":"Roma","calciatori":"n. calciatori 17","nc":17,"tipo":"Amichevole","fascia":"Mattina","tot":90,"sum":90,"labelDiff":"DIFFERENZIATO","diff":["Sani"],"inf":["Bigi (LCA)"],"blocchi":[{"programma":"amichevole vs Flaminia (1 tempo)","esercizi":"","spazio":"","note":"","min":45.0,"cat":"Amichevole"},{"programma":"amichevole vs Flaminia (2 tempo)","esercizi":"","spazio":"","note":"","min":45.0,"cat":"Amichevole"}]}]}]}</script>
+<script>
+(function(){
+"use strict";
+var DATA=JSON.parse(document.getElementById("dati").textContent);
+var GIORNI=DATA.giorni, ORD=DATA.meta.ordine;
+var SW={}; ORD.forEach(function(c,i){SW[c]="var(--s"+(i+1)+")";});
+var MESI={lug:"luglio",ago:"agosto"};
+
+/* ---------- flat block index ---------- */
+var ROWS=[];
+GIORNI.forEach(function(g){
+  g.sedute.forEach(function(s){
+    s.blocchi.forEach(function(b,bi){
+      ROWS.push({g:g,s:s,b:b,i:bi,
+        txt:((b.programma||"")+" "+(b.esercizi||"")+" "+(b.spazio||"")+" "+(b.note||"")+" "+
+             (s.diff||[]).join(" ")+" "+(s.inf||[]).join(" ")).toLowerCase()});
+    });
+  });
+});
+
+/* ---------- state ---------- */
+var F={q:"",tipo:"",fascia:"",week:"",doppie:false,flat:false,cats:{},day:null,sort:"data",dir:1};
+ORD.forEach(function(c){F.cats[c]=true;});
+
+function dayHasDouble(g){return g.sedute.length>1;}
+function pass(r){
+  if(!F.cats[r.b.cat]) return false;
+  if(F.tipo && r.s.tipo!==F.tipo) return false;
+  if(F.fascia && r.s.fascia!==F.fascia) return false;
+  if(F.week && r.g.week!==F.week) return false;
+  if(F.doppie && !dayHasDouble(r.g)) return false;
+  if(F.day && r.g.d!==F.day) return false;
+  if(F.q && r.txt.indexOf(F.q)<0) return false;
+  return true;
+}
+function filtered(){return ROWS.filter(pass);}
+
+/* ---------- helpers ---------- */
+function fmt(n){return (Math.round(n*10)/10).toString().replace(".",",");}
+function esc(s){return (s==null?"":String(s)).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function hl(s){
+  var t=esc(s);
+  if(!F.q) return t;
+  try{
+    var re=new RegExp("("+F.q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");
+    return t.replace(re,"<mark>$1</mark>");
+  }catch(e){return t;}
+}
+function dLabel(g){
+  var p=g.d.split("-");
+  return p[2]+" "+(MESI[g.mese]||g.mese);
+}
+
+/* ---------- KPI ---------- */
+function kpis(){
+  var tot=0,ns=0,nd=0,dbl=0,am=0,ncs=[];
+  GIORNI.forEach(function(g){
+    if(g.sedute.length){nd++;}
+    if(g.sedute.length>1) dbl++;
+    g.sedute.forEach(function(s){
+      ns++; tot+=s.sum; if(s.tipo==="Amichevole") am++;
+      if(s.nc) ncs.push(s.nc);
+    });
+  });
+  var media=ns?tot/ns:0;
+  var mediaNc=ncs.length?ncs.reduce(function(a,b){return a+b;},0)/ncs.length:0;
+  var items=[
+    [ns,"sedute totali","dal 20 lug al 22 ago"],
+    [nd+"/"+GIORNI.length,"giorni di lavoro",(GIORNI.length-nd)+" giorni di riposo"],
+    [dbl,"giorni con doppia","seduta mattina + pomeriggio"],
+    [Math.round(tot),"minuti totali",Math.round(tot/60)+" ore di lavoro"],
+    [Math.round(media),"minuti per seduta","media sul periodo"],
+    [am,"amichevoli","Tivoli, Montespaccato, Monterotondo, Flaminia"],
+    [fmt(mediaNc),"calciatori per seduta","media dichiarata"]
+  ];
+  document.getElementById("kpis").innerHTML=items.map(function(it){
+    return '<div class="kpi"><div class="v">'+it[0]+'</div><div class="k">'+it[1]+'</div><div class="x">'+it[2]+'</div></div>';
+  }).join("");
+  document.getElementById("periodo").textContent="Precampionato — 20 luglio / 22 agosto 2026 · "+ns+" sedute · "+Math.round(tot)+" minuti";
+  document.getElementById("tot-note").textContent="Totale ricostruito dai singoli blocchi: "+Math.round(tot)+" min.";
+}
+
+/* ---------- day chart ---------- */
+var MAXY=180;
+function buildChart(){
+  var rows=filtered();
+  var per={};
+  rows.forEach(function(r){
+    var d=per[r.g.d]||(per[r.g.d]={tot:0,cats:{}});
+    d.tot+=r.b.min; d.cats[r.b.cat]=(d.cats[r.b.cat]||0)+r.b.min;
+  });
+  var maxv=0; for(var k in per) maxv=Math.max(maxv,per[k].tot);
+  MAXY=Math.max(60,Math.ceil(maxv/60)*60);
+
+  var ya=document.getElementById("yaxis"), cw=document.getElementById("chartwrap");
+  ya.innerHTML=""; Array.prototype.slice.call(cw.querySelectorAll(".gridline")).forEach(function(n){n.remove();});
+  var H=210;
+  for(var v=0;v<=MAXY;v+=60){
+    var y=H-(v/MAXY)*H;
+    var t=document.createElement("div"); t.className="ytick"; t.style.top=y+"px"; t.textContent=v;
+    ya.appendChild(t);
+    if(v>0){var gl=document.createElement("div"); gl.className="gridline"; gl.style.top=y+"px"; cw.insertBefore(gl,cw.querySelector(".bars"));}
+  }
+
+  var bars=document.getElementById("bars"), xa=document.getElementById("xaxis"), xm=document.getElementById("xmonth");
+  bars.innerHTML="";xa.innerHTML="";xm.innerHTML="";
+  var lastMonth=null;
+  GIORNI.forEach(function(g){
+    var d=per[g.d]||{tot:0,cats:{}};
+    var col=document.createElement("div");
+    col.className="bcol"+(F.day&&F.day!==g.d?" dim":"")+(F.day===g.d?" sel":"");
+    col.setAttribute("data-d",g.d);
+    if(d.tot>0){
+      for(var i=ORD.length-1;i>=0;i--){
+        var c=ORD[i], v=d.cats[c]||0;
+        if(v<=0) continue;
+        var seg=document.createElement("div");
+        seg.className="seg";
+        seg.style.height=Math.max(2,(v/MAXY)*H)+"px";
+        seg.style.background=SW[c];
+        col.insertBefore(seg,col.firstChild);
+      }
+    }else if(!g.sedute.length){
+      var r=document.createElement("div"); r.className="rest"; col.appendChild(r);
+    }
+    bars.appendChild(col);
+    var wd=(g.dow==="sab"||g.dow==="dom");
+    var xl=document.createElement("div"); xl.className="xlab"+(wd?" we":""); xl.textContent=g.gg; xa.appendChild(xl);
+    var xmn=document.createElement("span"); xmn.textContent=(g.mese!==lastMonth?g.mese:""); lastMonth=g.mese; xm.appendChild(xmn);
+    col.addEventListener("mouseenter",function(e){showTip(e,g,d);});
+    col.addEventListener("mousemove",moveTip);
+    col.addEventListener("mouseleave",hideTip);
+    col.addEventListener("click",function(){
+      F.day=(F.day===g.d)?null:g.d; renderAll();
+      if(F.day){var el=document.getElementById("day-"+F.day); if(el) el.scrollIntoView({block:"center",behavior:"smooth"});}
+    });
+  });
+}
+
+/* ---------- legend ---------- */
+function buildLegend(){
+  var tot={}; ORD.forEach(function(c){tot[c]=0;});
+  ROWS.forEach(function(r){ if(pass2(r)) tot[r.b.cat]+=r.b.min; });
+  document.getElementById("legend").innerHTML=ORD.map(function(c){
+    return '<button class="lg" data-c="'+esc(c)+'" aria-pressed="'+(F.cats[c]?"true":"false")+'">'+
+      '<span class="sw" style="background:'+SW[c]+'"></span>'+esc(c)+
+      '<span class="mn">'+Math.round(tot[c])+"'</span></button>";
+  }).join("");
+  Array.prototype.slice.call(document.querySelectorAll(".lg")).forEach(function(b){
+    b.addEventListener("click",function(){
+      var c=b.getAttribute("data-c");
+      var on=Object.keys(F.cats).filter(function(k){return F.cats[k];});
+      if(on.length===1 && F.cats[c]){ ORD.forEach(function(k){F.cats[k]=true;}); }
+      else if(on.length===ORD.length){ ORD.forEach(function(k){F.cats[k]=(k===c);}); }
+      else { F.cats[c]=!F.cats[c]; }
+      renderAll();
+    });
+  });
+}
+/* filters minus category, for legend totals */
+function pass2(r){
+  if(F.tipo && r.s.tipo!==F.tipo) return false;
+  if(F.fascia && r.s.fascia!==F.fascia) return false;
+  if(F.week && r.g.week!==F.week) return false;
+  if(F.doppie && !dayHasDouble(r.g)) return false;
+  if(F.day && r.g.d!==F.day) return false;
+  if(F.q && r.txt.indexOf(F.q)<0) return false;
+  return true;
+}
+
+/* ---------- distribution ---------- */
+function buildDist(){
+  var rows=filtered(), tot={},all=0;
+  ORD.forEach(function(c){tot[c]=0;});
+  rows.forEach(function(r){tot[r.b.cat]+=r.b.min; all+=r.b.min;});
+  var arr=ORD.map(function(c){return {c:c,v:tot[c]};}).sort(function(a,b){return b.v-a.v;});
+  var mx=arr.length?arr[0].v:1;
+  document.getElementById("dist").innerHTML=arr.map(function(o){
+    var pc=all?Math.round(o.v/all*1000)/10:0;
+    return '<div class="drow">'+
+      '<div class="dlab"><span class="sw" style="background:'+SW[o.c]+'"></span>'+esc(o.c)+'</div>'+
+      '<div class="dval">'+Math.round(o.v)+"'<span class=\"pc\">"+fmt(pc)+'%</span></div>'+
+      '<div class="dbar"><i style="width:'+(mx?(o.v/mx*100):0)+'%;background:'+SW[o.c]+'"></i></div>'+
+    '</div>';
+  }).join("");
+}
+
+/* ---------- weeks ---------- */
+function buildWeeks(){
+  var rows=filtered(), wk={};
+  rows.forEach(function(r){
+    var w=wk[r.g.week]||(wk[r.g.week]={min:0,ses:{},d0:r.g.d});
+    w.min+=r.b.min; w.ses[r.g.d+"#"+r.s.n]=1;
+    if(r.g.d<w.d0) w.d0=r.g.d;
+  });
+  var keys=Object.keys(wk).sort();
+  document.getElementById("weeks").innerHTML=keys.map(function(k,i){
+    var w=wk[k], n=Object.keys(w.ses).length;
+    return "<tr><td>Sett. "+(i+1)+" <span style='color:var(--ink-3)'>&middot; da "+w.d0.split("-")[2]+"/"+w.d0.split("-")[1]+"</span></td>"+
+      "<td>"+n+"</td><td>"+Math.round(w.min)+"</td><td>"+(n?Math.round(w.min/n):0)+"</td></tr>";
+  }).join("")||"<tr><td colspan='4' style='color:var(--ink-3)'>Nessun dato</td></tr>";
+}
+
+/* ---------- table ---------- */
+function catChip(c){return '<span class="catchip"><span class="sw" style="background:'+SW[c]+'"></span>'+esc(c)+"</span>";}
+
+function buildTable(){
+  var rows=filtered(), host=document.getElementById("tableHost");
+  if(!rows.length){host.innerHTML='<div class="empty">Nessuna riga corrisponde ai filtri attivi.</div>';return;}
+
+  if(F.flat){
+    var sorted=rows.slice().sort(function(a,b){
+      var va,vb;
+      if(F.sort==="min"){va=a.b.min;vb=b.b.min;}
+      else if(F.sort==="cat"){va=ORD.indexOf(a.b.cat);vb=ORD.indexOf(b.b.cat);}
+      else {va=a.g.d+String(a.s.n).padStart(3,"0")+String(a.i).padStart(3,"0");vb=b.g.d+String(b.s.n).padStart(3,"0")+String(b.i).padStart(3,"0");}
+      return va<vb?-F.dir:(va>vb?F.dir:0);
+    });
+    var ar=F.dir>0?"▲":"▼";
+    host.innerHTML='<table class="log"><thead><tr>'+
+      '<th class="sortable" data-s="data">Giorno <span class="ar">'+(F.sort==="data"?ar:"")+'</span></th>'+
+      '<th>Seduta</th>'+
+      '<th class="sortable" data-s="cat">Categoria <span class="ar">'+(F.sort==="cat"?ar:"")+'</span></th>'+
+      '<th>Programma</th><th>Esercizi</th>'+
+      '<th class="sortable" style="text-align:right" data-s="min">Min <span class="ar">'+(F.sort==="min"?ar:"")+'</span></th>'+
+      '<th>Spazio</th><th>Note</th></tr></thead><tbody>'+
+      sorted.map(function(r){
+        return '<tr class="blk"><td class="mono" style="white-space:nowrap">'+r.g.dow+" "+dLabel(r.g)+"</td>"+
+          '<td class="mono" style="white-space:nowrap">n.'+r.s.n+" · "+esc(r.s.ora)+"</td>"+
+          "<td>"+catChip(r.b.cat)+"</td>"+
+          '<td class="prog">'+hl(r.b.programma)+"</td>"+
+          '<td class="ex">'+hl(r.b.esercizi)+"</td>"+
+          '<td class="min">'+(r.b.min?Math.round(r.b.min):"")+"</td>"+
+          '<td class="ex">'+hl(r.b.spazio)+"</td>"+
+          '<td class="note">'+hl(r.b.note)+"</td></tr>";
+      }).join("")+"</tbody></table>";
+    Array.prototype.slice.call(host.querySelectorAll("th.sortable")).forEach(function(th){
+      th.addEventListener("click",function(){
+        var s=th.getAttribute("data-s");
+        if(F.sort===s) F.dir=-F.dir; else {F.sort=s;F.dir=(s==="min")?-1:1;}
+        buildTable();
+      });
+    });
+    return;
+  }
+
+  /* grouped by day */
+  var byDay={};
+  rows.forEach(function(r){
+    var d=byDay[r.g.d]||(byDay[r.g.d]={g:r.g,ses:{}});
+    var s=d.ses[r.s.n]||(d.ses[r.s.n]={s:r.s,rows:[]});
+    s.rows.push(r);
+  });
+  var html='<table class="log"><thead><tr><th style="width:150px">Categoria</th><th style="width:170px">Programma</th>'+
+    '<th>Esercizi</th><th style="text-align:right;width:64px">Min</th><th style="width:150px">Spazio</th><th>Note</th></tr></thead>';
+  Object.keys(byDay).sort().forEach(function(dk){
+    var d=byDay[dk], g=d.g;
+    var tot=0,ns=0;
+    Object.keys(d.ses).forEach(function(k){ns++;d.ses[k].rows.forEach(function(r){tot+=r.b.min;});});
+    html+='<tbody id="day-'+dk+'">';
+    html+='<tr class="day"><td colspan="6"><div class="dayhead">'+
+      '<span class="dt"><span class="dw">'+g.dow+"</span>"+dLabel(g)+"</span>"+
+      '<span class="m">'+ns+(ns>1?" sedute":" seduta")+" · "+Math.round(tot)+" min"+"</span>"+
+      (g.sedute.length>1?'<span class="tag">doppia seduta</span>':"")+
+      "</div></td></tr>";
+    Object.keys(d.ses).sort(function(a,b){return a-b;}).forEach(function(k){
+      var S=d.ses[k].s, rr=d.ses[k].rows, st=0;
+      rr.forEach(function(r){st+=r.b.min;});
+      html+='<tr class="ses"><td colspan="6"><div class="seshead">'+
+        "<b>Seduta n."+S.n+"</b>"+
+        '<span class="mono">'+esc(S.ora)+"</span>"+
+        (S.luogo?"<span>"+esc(S.luogo)+"</span>":"")+
+        (S.calciatori?"<span>"+esc(S.calciatori)+"</span>":"")+
+        '<span class="tag'+(S.tipo==="Amichevole"?" am":(S.tipo==="Test"?" te":""))+'">'+esc(S.tipo)+"</span>"+
+        '<span class="tag">'+esc(S.fascia)+"</span>"+
+        '<span class="mono" style="margin-left:auto">'+Math.round(st)+" / "+S.tot+" min</span>"+
+        "</div></td></tr>";
+      if((S.diff&&S.diff.length)||(S.inf&&S.inf.length)){
+        html+='<tr class="meta"><td colspan="6">';
+        if(S.diff&&S.diff.length) html+='<div class="metaline"><span class="lb">'+esc(S.labelDiff)+"</span><span>"+hl(S.diff.join(", "))+"</span></div>";
+        if(S.inf&&S.inf.length) html+='<div class="metaline"><span class="lb">Infortunati</span><span>'+hl(S.inf.join(" · "))+"</span></div>";
+        html+="</td></tr>";
+      }
+      rr.forEach(function(r){
+        html+='<tr class="blk"><td>'+catChip(r.b.cat)+"</td>"+
+          '<td class="prog">'+hl(r.b.programma)+"</td>"+
+          '<td class="ex">'+hl(r.b.esercizi)+"</td>"+
+          '<td class="min">'+(r.b.min?Math.round(r.b.min):"")+"</td>"+
+          '<td class="ex">'+hl(r.b.spazio)+"</td>"+
+          '<td class="note">'+hl(r.b.note)+"</td></tr>";
+      });
+    });
+    html+="</tbody>";
+  });
+  host.innerHTML=html+"</table>";
+}
+
+/* ---------- tooltip ---------- */
+var tip=document.getElementById("tip");
+function showTip(e,g,d){
+  var h='<div class="tt">'+g.dow+" "+dLabel(g)+"</div>";
+  if(!d.tot){
+    h+='<div style="color:var(--ink-3)">'+(g.sedute.length?"Nessun blocco con i filtri attivi":"Giorno di riposo")+"</div>";
+  }else{
+    ORD.forEach(function(c){
+      var v=d.cats[c]||0; if(!v) return;
+      h+='<div class="tr"><span><span class="sw" style="background:'+SW[c]+'"></span>'+esc(c)+'</span><span class="tv">'+Math.round(v)+"'</span></div>";
+    });
+    h+='<div class="sep"></div><div class="tr"><span>Totale</span><span class="tv">'+Math.round(d.tot)+"'</span></div>";
+    var ns=g.sedute.length;
+    h+='<div style="color:var(--ink-3);margin-top:4px">'+ns+(ns>1?" sedute · ":" seduta · ")+
+       g.sedute.map(function(s){return "n."+s.n+" "+s.ora;}).join(", ")+"</div>";
+  }
+  tip.innerHTML=h; tip.style.opacity="1"; moveTip(e);
+}
+function moveTip(e){
+  var w=tip.offsetWidth,hh=tip.offsetHeight;
+  var x=e.clientX+14, y=e.clientY-hh-10;
+  if(x+w>window.innerWidth-8) x=e.clientX-w-14;
+  if(y<8) y=e.clientY+16;
+  tip.style.left=x+"px"; tip.style.top=y+"px";
+}
+function hideTip(){tip.style.opacity="0";}
+
+/* ---------- filter chips & controls ---------- */
+function buildChips(){
+  document.getElementById("chips").innerHTML=ORD.map(function(c){
+    return '<button class="chip" data-c="'+esc(c)+'" aria-pressed="'+(F.cats[c]?"true":"false")+'">'+
+      '<span class="sw" style="background:'+SW[c]+'"></span>'+esc(c)+"</button>";
+  }).join("")+(F.day?'<button class="chip" id="clearDay" aria-pressed="true">giorno: '+F.day.split("-").reverse().join("/")+" ×</button>":"");
+  Array.prototype.slice.call(document.querySelectorAll("#chips .chip[data-c]")).forEach(function(b){
+    b.addEventListener("click",function(){F.cats[b.getAttribute("data-c")]=!F.cats[b.getAttribute("data-c")];renderAll();});
+  });
+  var cd=document.getElementById("clearDay");
+  if(cd) cd.addEventListener("click",function(){F.day=null;renderAll();});
+}
+function fillSelects(){
+  var tipi={},weeks={};
+  ROWS.forEach(function(r){tipi[r.s.tipo]=1;weeks[r.g.week]=r.g.d;});
+  var ft=document.getElementById("fTipo");
+  Object.keys(tipi).sort().forEach(function(t){var o=document.createElement("option");o.textContent=t;ft.appendChild(o);});
+  var fw=document.getElementById("fWeek"), ks=Object.keys(weeks).sort();
+  ks.forEach(function(k,i){
+    var o=document.createElement("option");o.value=k;
+    o.textContent="Sett. "+(i+1)+" — da "+weeks[k].split("-")[2]+"/"+weeks[k].split("-")[1];
+    fw.appendChild(o);
+  });
+}
+function bind(){
+  var q=document.getElementById("q");
+  q.addEventListener("input",function(){F.q=q.value.trim().toLowerCase();renderAll();});
+  document.getElementById("fTipo").addEventListener("change",function(){F.tipo=this.value;renderAll();});
+  document.getElementById("fFascia").addEventListener("change",function(){F.fascia=this.value;renderAll();});
+  document.getElementById("fWeek").addEventListener("change",function(){F.week=this.value;renderAll();});
+  var fd=document.getElementById("fDoppie");
+  fd.addEventListener("click",function(){F.doppie=!F.doppie;fd.setAttribute("aria-pressed",F.doppie);fd.classList.toggle("on",F.doppie);renderAll();});
+  var fv=document.getElementById("fView");
+  fv.addEventListener("click",function(){
+    F.flat=!F.flat;fv.setAttribute("aria-pressed",F.flat);fv.classList.toggle("on",F.flat);
+    fv.textContent=F.flat?"Vista per giorni":"Vista piatta";
+    buildTable();
+  });
+  document.getElementById("fReset").addEventListener("click",function(){
+    F.q="";F.tipo="";F.fascia="";F.week="";F.doppie=false;F.day=null;
+    ORD.forEach(function(c){F.cats[c]=true;});
+    q.value="";document.getElementById("fTipo").value="";document.getElementById("fFascia").value="";
+    document.getElementById("fWeek").value="";
+    fd.setAttribute("aria-pressed","false");fd.classList.remove("on");
+    renderAll();
+  });
+}
+
+/* ---------- render ---------- */
+function renderAll(){
+  var rows=filtered(), min=0, ses={}, days={};
+  rows.forEach(function(r){min+=r.b.min;ses[r.g.d+"#"+r.s.n]=1;days[r.g.d]=1;});
+  document.getElementById("count").textContent=
+    rows.length+" blocchi · "+Object.keys(ses).length+" sedute · "+Object.keys(days).length+" giorni · "+Math.round(min)+" min";
+  buildLegend(); buildChart(); buildDist(); buildWeeks(); buildChips(); buildTable();
+}
+
+kpis(); fillSelects(); bind(); renderAll();
+})();
+</script>
+
+</body>
+</html>
